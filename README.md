@@ -25,6 +25,20 @@ Eis os requisitos funcionais da aplicação:
 13. O sistema deve permitir a pesquisa de tarefas a partir do título e descrição da tarefa.
 14. O sistema deve permitir a filtragem das tarefas baseado na data de sua realização.
 
-## Principais routas da aplicação
+## Principais rotas da aplicação
 
-1. 
+1. **Criação de conta** - uma conta de um utilizador é criada usando o endpoint  _/api/auth/signup_, em que no body da requisição deve se especificar os dados:
+<ul>
+    <li>Email</li>
+    <li>Password</li>
+</ul>
+
+Exemplo do Body de uma requisição:
+{
+	"email": "youremail@yourdomain.com",
+    "password": "yourpassword"
+}
+
+
+* A criação da conta falha se já existir uma conta com o mesmo email da requisição.
+* Se a requsição for um sucesso, como resposta à requisição de criação da conta, um token de autorização juntamente com os dados do utilizador são retornados.
