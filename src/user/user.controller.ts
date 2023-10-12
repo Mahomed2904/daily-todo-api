@@ -5,6 +5,7 @@ import {
     HttpException,
     HttpStatus,
     Post,
+    Put,
     Req,
     UseGuards,
 } from '@nestjs/common';
@@ -33,7 +34,7 @@ import { ChangeCurrentPasswordGuard } from './change-current-password.guard';
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
-    @Post('authenticate')
+    @Post('signin')
     async authenticate(@Body() authData: AuthenticationInputDTO) {
         try {
             const output = await this.userService.authenticate(authData);
@@ -52,7 +53,7 @@ export class UserController {
         }
     }
 
-    @Get('authenticate-google')
+    @Get('signin-google')
     async authenticateWithGoogle() {
         try {
             const output = await this.userService.autheticateWithGoogle();
@@ -71,7 +72,7 @@ export class UserController {
         }
     }
 
-    @Post('create-account')
+    @Post('signup')
     async createAccount(@Body() userData: CreateUserInputDTO) {
         try {
             const createdUser = await this.userService.createUser(userData);
@@ -96,13 +97,13 @@ export class UserController {
     }
 
     @UseGuards(AuthGuard, VerificationCodeGuard)
-    @Get('user-details')
+    @Get('profile')
     async userDetails(@Req() data: GetUserDetailsInputDTO) {
         return await this.userService.userDetails(data);
     }
 
     @UseGuards(AuthGuard, VerificationCodeGuard, ChangeCurrentPasswordGuard)
-    @Post('configure-profile')
+    @Post('profile')
     async configureProfile(
         @Req() request: { userId: string },
         @Body() data: UserDetailsInputDTO,
@@ -111,7 +112,7 @@ export class UserController {
     }
 
     @UseGuards(AuthGuard, VerificationCodeGuard, ChangeCurrentPasswordGuard)
-    @Post('change-current-password')
+    @Put('current-password')
     async changeCurrentUserPassword(
         @Req() request: { userId: string },
         @Body() data: ChangeCurrentPasswordInputDTO,
@@ -139,7 +140,7 @@ export class UserController {
     }
 
     @UseGuards(AuthGuard, ChangeCurrentPasswordGuard)
-    @Get('request-email-verification-code')
+    @Get('email-verification-code')
     async requestEmailVerificationCode(@Req() request: { userId: string }) {
         return await this.userService.requestEmailVerificationCode(
             request.userId,
@@ -171,7 +172,7 @@ export class UserController {
         }
     }
 
-    @Get('request-change-password-verification-code')
+    @Get('password-verification-code')
     async askChangeUserPasswordCode(
         @Body() data: RequestChhangePasswordInputDTO,
     ) {
@@ -187,7 +188,7 @@ export class UserController {
         }
     }
 
-    @Post('verify-change-password-code')
+    @Post('verify-password')
     async enableChangePassword(@Body() data: VerifyPasswordDTO) {
         try {
             await this.userService.verifyChangePasswordCode(
@@ -207,7 +208,7 @@ export class UserController {
         }
     }
 
-    @Post('change-user-password')
+    @Post('user-password')
     async changePassword(@Body() data: ChangePasswordInputDTO) {
         try {
             await this.userService.changePassword(data);
@@ -224,7 +225,7 @@ export class UserController {
     }
 
     @UseGuards(AuthGuard, VerificationCodeGuard)
-    @Get('sync-with-calendar')
+    @Get('sync-calendar')
     async syncTodoWithGoogleCalendar(@Req() request: { userId: string }) {
         try {
             await this.userService.syncTodoWithGoogleCalendar(request.userId);
