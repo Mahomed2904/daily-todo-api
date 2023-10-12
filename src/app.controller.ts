@@ -1,12 +1,21 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService, Greeting } from './app.service';
+import { AppService } from './app.service';
+import { CalendarService } from './google/calendar.service';
 
-@Controller('api')
+@Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+    constructor(
+        private readonly appService: AppService,
+        private readonly calendarService: CalendarService,
+    ) {}
 
-  @Get()
-  getHello(): Greeting {
-    return this.appService.getHello();
-  }
+    @Get()
+    async getHello() {
+        return 'Hello World';
+    }
+
+    @Get('callback')
+    callback(): string {
+        return 'Reveiced';
+    }
 }

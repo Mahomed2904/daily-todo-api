@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 
 export interface Greeting {
-  greeting: string;
+    greeting: string;
 }
 
 @Injectable()
 export class AppService {
-  getHello(): Greeting {
-    return {
-      greeting: 'Hello World!',
-    };
-  }
+    getHello(): Greeting {
+        return {
+            greeting: 'Hello World!',
+        };
+    }
 }
