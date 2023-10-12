@@ -36,8 +36,8 @@ Uma conta de um utilizador é criada usando o endpoint  _/api/auth/signup_, em q
 Exemplo do Body de uma requisição:
 ```javascript
 {
-"email": "youremail@yourdomain.com",
-"password": "yourpassword"
+    "email": "youremail@yourdomain.com",
+    "password": "yourpassword"
 }
 ```
 
@@ -51,14 +51,14 @@ Exemplo do Body de uma requisição:
 Exemplo de resposta recebida na criação de uma conta:
 ```javascript
 {
-"userId": "63f09a65-325c-4d79-82c0-335f013589ab",
-"isActivated": false,  // A conta está desativada
-"authenticationData": {
-    "isActivatedAccount": false,
-    "acessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjA5YTY1LTMyNWMtNGQ3OS04MmMwLTMzNWYwMTM1ODlhYiIsImlzQWN0aXZhdGVkIjpmYWxzZSwiZW1haWwiOiJtYWhvbWVkYWx5MjAwMEBnbWFpbC5jb20iLCJ1c2VyVHlwZSI6IklOVEVSTkFMIiwiaWF0IjoxNjk2ODA1NDgyLCJleHAiOjE2OTc0MTAyODJ9.zcMS6W4H21YS9nae5X2mQGezQmDFTZTCE1HjxLBvaqY",
-    "expiryDate": "1697410282607",
-    "tokenType": "Bearer"
-}
+    "userId": "63f09a65-325c-4d79-82c0-335f013589ab",
+    "isActivated": false,  // A conta está desativada
+    "authenticationData": {
+        "isActivatedAccount": false,
+        "acessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjA5YTY1LTMyNWMtNGQ3OS04MmMwLTMzNWYwMTM1ODlhYiIsImlzQWN0aXZhdGVkIjpmYWxzZSwiZW1haWwiOiJtYWhvbWVkYWx5MjAwMEBnbWFpbC5jb20iLCJ1c2VyVHlwZSI6IklOVEVSTkFMIiwiaWF0IjoxNjk2ODA1NDgyLCJleHAiOjE2OTc0MTAyODJ9.zcMS6W4H21YS9nae5X2mQGezQmDFTZTCE1HjxLBvaqY",
+        "expiryDate": "1697410282607",
+        "tokenType": "Bearer"
+    }
 }
 ```
 
@@ -68,7 +68,7 @@ A conta do utilizador permanece inativa enquanto não se fazer a verificação d
 
 ```javascript
 {
-"code": "yourVerificationCode",
+    "code": "yourVerificationCode",
 }
 ```
 
@@ -78,6 +78,6 @@ Eis um exemplo de como o header da requisição deve estar configurado:
 
 ```javascript
 {
-'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZDZhYTc4LWM2YTctNDYxMy1hMTE5LWFkOTViN2I0YjM2OCIsImVtYWlsIjoibWFob21lZGFseTIwMDBAZ21haWwuY29tIiwiaXNBY3RpdmF0ZWQiOnRydWUsInVzZXJUeXBlIjoiRVhURVJOQUwiLCJpYXQiOjE2OTY4MzQyNzAsImV4cCI6MTY5NzQzOTA3MH0.LjlMt3tGOyQXOJfbIOd5n9f1Gcd5nzTsQHQydT1StZ4',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZDZhYTc4LWM2YTctNDYxMy1hMTE5LWFkOTViN2I0YjM2OCIsImVtYWlsIjoibWFob21lZGFseTIwMDBAZ21haWwuY29tIiwiaXNBY3RpdmF0ZWQiOnRydWUsInVzZXJUeXBlIjoiRVhURVJOQUwiLCJpYXQiOjE2OTY4MzQyNzAsImV4cCI6MTY5NzQzOTA3MH0.LjlMt3tGOyQXOJfbIOd5n9f1Gcd5nzTsQHQydT1StZ4',
 }
 ```
