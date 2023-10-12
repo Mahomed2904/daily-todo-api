@@ -1,6 +1,6 @@
 # Daily-Todo API
 
-Esta API implementa a lógica da aplicação daily-todo, uma aplicação que tem como objetivo permitir o agendamento de tarefas diárias de forma fácil e simples e com integração com o google calendar. No entanto, todas as tarefas agendadas a partir da aplicação poderão ser agendadas como eventos no google calendar do utilizador.
+Este projeto implementa uma API com as regras de negócio da aplicação daily-todo, uma aplicação que tem como objetivo permitir o agendamento de tarefas diárias de forma fácil e simples e com integração com o google calendar. No entanto, todas as tarefas agendadas a partir da aplicação poderão ser agendadas como eventos no google calendar do utilizador.
 
 A aplicação possui um sistema de notificações, que notifica ao utilizador sempre que chega o momento de realizar uma tarefa. O utilizador pode configurar a aplicação para receber mais de uma notificação para uma determinada tarefa, o período que as notifcações devem ser feitas (dias, minutos, horas antes da momento da tarefa) e a forma da notificação (popup ou email).
 
@@ -8,7 +8,7 @@ A aplicação ainda está em desenvolvimento para tal está a ser usado o framew
 
 ## Requisitos funcionais da aplicação
 
-Eis os requisitos funcionais da aplicação
+Eis os requisitos funcionais da aplicação:
 
 1. O sistema deve permitir a um utilizador registar-se especificando o nome completo, o e-mail, uma palavra passe, o número de telefone e a foto de perfil (opcional).
 2. O sistema deve permitir a um utilizador autenticar-se com o seu email e senha para poder gerir as suas tarefas.
@@ -25,3 +25,6 @@ Eis os requisitos funcionais da aplicação
 13. O sistema deve permitir a pesquisa de tarefas a partir do título e descrição da tarefa.
 14. O sistema deve permitir a filtragem das tarefas baseado na data de sua realização.
 
+## Principais routas da aplicação
+
+1. 

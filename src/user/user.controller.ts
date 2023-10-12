@@ -29,7 +29,7 @@ import { UserCanNoResetPassword } from './error/user-canot-reset-password.error'
 import { AlreadyAbleToChangePasswordError } from './error/already-able-to-change-password.error';
 import { ChangeCurrentPasswordGuard } from './change-current-password.guard';
 
-@Controller('auth')
+@Controller('api/auth')
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
