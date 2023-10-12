@@ -2,11 +2,11 @@
 
 Esta API implementa a lógica da aplicação daily-todo, uma aplicação que tem como objetivo permitir o agendamento de tarefas diárias de forma fácil e simples e com integração com o google calendar. No entanto, todas as tarefas agendadas a partir da aplicação poderão ser agendadas como eventos no google calendar do utilizador.
 
-A aplicação possui um sistema de notificações, que notifica ao utilizador sempre uma certa chega o momento de realizar uma tarefa. O utilizador pode configurar para receber mais de uma notificação para uma determinada tarefa, o período que as notifcações devem ser feitas (dias, minutos, horas antes da momento da tarefa) e a forma da notificação (popup ou email).
+A aplicação possui um sistema de notificações, que notifica ao utilizador sempre que chega o momento de realizar uma tarefa. O utilizador pode configurar a aplicação para receber mais de uma notificação para uma determinada tarefa, o período que as notifcações devem ser feitas (dias, minutos, horas antes da momento da tarefa) e a forma da notificação (popup ou email).
 
-A aplicação foi desenvolvida usando Nestjs, um framework Nodejs para desenvolvimento de aplicações backend. Para mais informações sobre o framework visite o link <a href="https://nestjs.com/">https://nestjs.com/</a>
+A aplicação ainda está em desenvolvimento para tal está a ser usado o framework Nestjs, um framework Nodejs para desenvolvimento de aplicações backend. Para mais informações sobre o framework visite o link <a href="https://nestjs.com/">https://nestjs.com/</a>
 
-# Requisitos funcionais da aplicação
+## Requisitos funcionais da aplicação
 
 Eis os requisitos funcionais da aplicação
 
