@@ -16,10 +16,9 @@ import { AuthGuard } from 'src/auth/auth.guard';
 import { TodoParamsDTO } from './dto/list-todo-params.dto';
 import { CreateTodoDTO } from './dto/create-todo.dto';
 import { UserNotFoundError } from 'src/user/error/user-not-found.error';
-import { AuthorizationNotGivenError } from 'src/google/errror/authorization-not-given.error';
 import { TodoNotFoundError } from './error/todo-not-found.error';
 
-@Controller('todo')
+@Controller('api/todo')
 export class TodoController {
     constructor(private todoServices: TodoService) {}
 
