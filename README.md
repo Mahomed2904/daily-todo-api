@@ -25,20 +25,59 @@ Eis os requisitos funcionais da aplicação:
 13. O sistema deve permitir a pesquisa de tarefas a partir do título e descrição da tarefa.
 14. O sistema deve permitir a filtragem das tarefas baseado na data de sua realização.
 
-## Principais rotas da aplicação
+## Principais rotas da aplicação e alguns detalhes de desenho
 
-1. **Criação de conta** - uma conta de um utilizador é criada usando o endpoint  _/api/auth/signup_, em que no body da requisição deve se especificar os dados:
-<ul>
-    <li>Email</li>
-    <li>Password</li>
-</ul>
+### 1. Criação de conta
+
+Uma conta de um utilizador é criada usando o endpoint  _/api/auth/signup_, em que no body da requisição deve se especificar os dados:
+- Email
+- Password
 
 Exemplo do Body de uma requisição:
+```javascript
 {
 	"email": "youremail@yourdomain.com",
     "password": "yourpassword"
 }
+```
 
+* Se já existir uma conta com o mesmo email da requisição, a criação da conta falha, no entanto uma resposta com o estado HTTP CONFLIT é retornada como forma de informar que já existe uma conta com o mesmo email.
 
-* A criação da conta falha se já existir uma conta com o mesmo email da requisição.
-* Se a requsição for um sucesso, como resposta à requisição de criação da conta, um token de autorização juntamente com os dados do utilizador são retornados.
+* Se a requisição for um sucesso: 
+    1. Um email com o código de verificação do email do utilizador é enviado.
+    2. É recebida uma resposta com um token de autorização juntamente com os dados da conta.
+    3. A reposta recebida tem como estado HTTP o estado 201.
+
+Exemplo de resposta recebida na criação de uma conta:
+```javascript
+{
+	"userId": "63f09a65-325c-4d79-82c0-335f013589ab",
+	"isActivated": false,  // A conta está desativada
+	"authenticationData": {
+		"isActivatedAccount": false,
+		"acessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjA5YTY1LTMyNWMtNGQ3OS04MmMwLTMzNWYwMTM1ODlhYiIsImlzQWN0aXZhdGVkIjpmYWxzZSwiZW1haWwiOiJtYWhvbWVkYWx5MjAwMEBnbWFpbC5jb20iLCJ1c2VyVHlwZSI6IklOVEVSTkFMIiwiaWF0IjoxNjk2ODA1NDgyLCJleHAiOjE2OTc0MTAyODJ9.zcMS6W4H21YS9nae5X2mQGezQmDFTZTCE1HjxLBvaqY",
+		"expiryDate": "1697410282607",
+		"tokenType": "Bearer"
+	}
+}
+```
+
+### 2. Verificação de email da conta do utilizador
+
+A conta do utilizador permanece inativa enquanto não se fazer a verificação do email da conta. Para verificar o email, deve-se enviar uma requisição para o endpoint _/api/auth/verify-email_, em que no body da requisição deve se especificar o código enviado vai email. Um exemplo com o body da requisição é o seguinte:
+
+```javascript
+{
+	"code": "yourVerificationCode",
+}
+```
+
+No header da requisição deve se configurar a propriedade Authorization com o prefixo e o token de autenticação retornado como resposta após a criação da conta. No caso de se perder o token retornado após a criação da conta, pode se fazer signin a partir da rota _/api/auth/signin_ especificando-se o email e a senha do utilizador para obter um novo token de autorização.
+
+Eis um exemplo de como o header da requisição deve estar configurado:
+
+```javascript
+{
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZDZhYTc4LWM2YTctNDYxMy1hMTE5LWFkOTViN2I0YjM2OCIsImVtYWlsIjoibWFob21lZGFseTIwMDBAZ21haWwuY29tIiwiaXNBY3RpdmF0ZWQiOnRydWUsInVzZXJUeXBlIjoiRVhURVJOQUwiLCJpYXQiOjE2OTY4MzQyNzAsImV4cCI6MTY5NzQzOTA3MH0.LjlMt3tGOyQXOJfbIOd5n9f1Gcd5nzTsQHQydT1StZ4',
+}
+```
